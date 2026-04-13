@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商品列表 | 校园二手交易平台数据库系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="items">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">DB</span>
+          <div>
+            <strong>校园二手交易平台</strong>
+            <span>Database Course Project</span>
+          </div>
+        </a>
+        <nav class="main-nav">
+          <a href="index.html">首页</a>
+          <a class="is-active" href="items.html">商品列表</a>
+          <a href="users.html">用户列表</a>
+          <a href="orders.html">订单列表</a>
+          <a href="analysis.html">查询分析</a>
+        </nav>
+        <button class="ghost-button reset-db-button" type="button">重置数据库</button>
+      </header>
+
+      <main class="page-main">
+        <section class="page-intro">
+          <p class="eyebrow">Item Management</p>
+          <h1>商品列表与数据操作</h1>
+          <p>
+            本页覆盖老师要求的增删改与“购买商品”业务逻辑。所有操作都会真实修改 SQLite
+            数据库，刷新页面后仍可看到结果。
+          </p>
+        </section>
+
+        <section class="content-grid two-column">
+          <article class="card">
+            <div class="card-header">
+              <h2>新增商品</h2>
+              <span class="pill">INSERT</span>
+            </div>
+            <div class="card-body">
+              <form class="data-form" id="create-item-form">
+                <label>
+                  商品名称
+                  <input name="item_name" placeholder="例如：Keyboard" required />
+                </label>
+                <label>
+                  分类
+                  <select name="category" required>
+                    <option value="Book">Book / 书籍</option>
+                    <option value="DailyGoods">DailyGoods / 生活用品</option>
+                    <option value="Electronics">Electronics / 电子产品</option>
+                    <option value="Furniture">Furniture / 家具</option>
+                    <option value="Sports">Sports / 运动</option>
+                  </select>
+                </label>
+                <label>
+                  价格
+                  <input name="price" type="number" min="0" step="0.01" placeholder="0" required />
+                </label>
+                <label>
+                  卖家
+                  <select name="seller_id" id="create-item-seller" required></select>
+                </label>
+                <button class="primary-button" type="submit">插入新商品</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>修改商品价格</h2>
+              <span class="pill">UPDATE</span>
+            </div>
+            <div class="card-body">
+              <form class="data-form" id="update-price-form">
+                <label>
+                  商品
+                  <select name="item_id" id="update-item-select" required></select>
+                </label>
+                <label>
+                  新价格
+                  <input name="price" type="number" min="0" step="0.01" required />
+                </label>
+                <button class="primary-button" type="submit">更新价格</button>
+              </form>
+            </div>
+          </article>
+        </section>
+
+        <section class="content-grid two-column">
+          <article class="card">
+            <div class="card-header">
+              <h2>删除未售商品</h2>
+              <span class="pill">DELETE</span>
+            </div>
+            <div class="card-body">
+              <form class="data-form" id="delete-item-form">
+                <label>
+                  可删除商品
+                  <select name="item_id" id="delete-item-select" required></select>
+                </label>
+                <button class="danger-button" type="submit">删除未售出商品</button>
+              </form>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>购买商品</h2>
+              <span class="pill">TRANSACTION</span>
+            </div>
+            <div class="card-body">
+              <form class="data-form" id="purchase-item-form">
+                <label>
+                  待购买商品
+                  <select name="item_id" id="purchase-item-select" required></select>
+                </label>
+                <label>
+                  买家
+                  <select name="buyer_id" id="purchase-buyer-select" required></select>
+                </label>
+                <label>
+                  购买日期
+                  <input name="order_date" id="purchase-date" type="date" required />
+                </label>
+                <button class="primary-button" type="submit">执行购买事务</button>
+              </form>
+            </div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="card">
+            <div class="card-header">
+              <h2>商品列表</h2>
+              <span class="pill" id="items-count-pill">0 Items</span>
+            </div>
+            <div class="card-body">
+              <div id="items-table"></div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="assets/vendor/sql-wasm.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

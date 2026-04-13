@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户列表 | 校园二手交易平台数据库系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="users">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">DB</span>
+          <div>
+            <strong>校园二手交易平台</strong>
+            <span>Database Course Project</span>
+          </div>
+        </a>
+        <nav class="main-nav">
+          <a href="index.html">首页</a>
+          <a href="items.html">商品列表</a>
+          <a class="is-active" href="users.html">用户列表</a>
+          <a href="orders.html">订单列表</a>
+          <a href="analysis.html">查询分析</a>
+        </nav>
+        <button class="ghost-button reset-db-button" type="button">重置数据库</button>
+      </header>
+
+      <main class="page-main">
+        <section class="page-intro">
+          <p class="eyebrow">User Directory</p>
+          <h1>用户列表与卖家统计</h1>
+          <p>本页展示用户基础数据，并额外给出每位用户当前发布商品数量，方便说明表间关系。</p>
+        </section>
+
+        <section class="content-grid two-column">
+          <article class="card">
+            <div class="card-header">
+              <h2>用户列表</h2>
+              <span class="pill" id="users-count-pill">0 Users</span>
+            </div>
+            <div class="card-body">
+              <div id="users-table"></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>卖家商品统计</h2>
+              <span class="pill">GROUP BY</span>
+            </div>
+            <div class="card-body">
+              <div id="seller-summary"></div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="assets/vendor/sql-wasm.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>查询分析 | 校园二手交易平台数据库系统</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="analysis">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">DB</span>
+          <div>
+            <strong>校园二手交易平台</strong>
+            <span>Database Course Project</span>
+          </div>
+        </a>
+        <nav class="main-nav">
+          <a href="index.html">首页</a>
+          <a href="items.html">商品列表</a>
+          <a href="users.html">用户列表</a>
+          <a href="orders.html">订单列表</a>
+          <a class="is-active" href="analysis.html">查询分析</a>
+        </nav>
+        <button class="ghost-button reset-db-button" type="button">重置数据库</button>
+      </header>
+
+      <main class="page-main">
+        <section class="page-intro">
+          <p class="eyebrow">Queries, Views & Metrics</p>
+          <h1>老师要求的全部查询结果集中展示</h1>
+          <p>
+            包含基础查询、连接查询、聚合与分组、视图展示，以及“购买商品”事务逻辑的 SQL 说明。
+          </p>
+        </section>
+
+        <section class="content-grid">
+          <article class="card">
+            <div class="card-header">
+              <h2>基础查询</h2>
+              <span class="pill">SELECT</span>
+            </div>
+            <div class="card-body" id="basic-queries"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>连接查询</h2>
+              <span class="pill">JOIN</span>
+            </div>
+            <div class="card-body" id="join-queries"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>聚合与分组</h2>
+              <span class="pill">GROUP BY</span>
+            </div>
+            <div class="card-body" id="aggregate-queries"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>视图</h2>
+              <span class="pill">VIEW</span>
+            </div>
+            <div class="card-body" id="views-section"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h2>购买事务 SQL 说明</h2>
+              <span class="pill">TRANSACTION</span>
+            </div>
+            <div class="card-body">
+              <pre class="sql-block"><code>BEGIN IMMEDIATE;
+SELECT status FROM item WHERE item_id = ?;
+-- 若 status != 0，回滚并提示“已售商品不能再次购买”
+INSERT INTO orders(order_id, item_id, buyer_id, order_date)
+VALUES (?, ?, ?, ?);
+UPDATE item SET status = 1 WHERE item_id = ?;
+COMMIT;</code></pre>
+              <p class="muted-text">
+                页面中的“执行购买事务”按钮就是按上面的顺序调用 SQL，确保新增订单和更新商品状态同时完成。
+              </p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="assets/vendor/sql-wasm.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>
