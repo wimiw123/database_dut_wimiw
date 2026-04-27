@@ -215,7 +215,7 @@ async function refreshItemPageData() {
   const countPill = document.getElementById("items-count-pill");
 
   if (countPill) {
-    countPill.textContent = `${items.length} Items`;
+    countPill.textContent = `${items.length} 件商品`;
   }
 
   if (itemsTable) {
@@ -383,7 +383,7 @@ async function renderUsersPage() {
     ORDER BY item_count DESC, u.user_id;
   `);
 
-  document.getElementById("users-count-pill").textContent = `${users.length} Users`;
+  document.getElementById("users-count-pill").textContent = `${users.length} 位用户`;
   document.getElementById("users-table").innerHTML = renderTable(
     [
       { key: "user_id", label: "用户ID" },
@@ -416,7 +416,7 @@ async function renderOrdersPage() {
     ORDER BY o.order_date, o.order_id;
   `);
 
-  document.getElementById("orders-count-pill").textContent = `${orders.length} Orders`;
+  document.getElementById("orders-count-pill").textContent = `${orders.length} 条订单`;
   document.getElementById("orders-table").innerHTML = renderTable(
     [
       { key: "order_id", label: "订单ID" },
@@ -446,7 +446,7 @@ async function renderAnalysisPage() {
   const basicQueries = [
     {
       title: "查询所有未售出的商品",
-      description: "对应要求：查询所有未售出的商品。",
+      description: "筛选当前仍可交易的商品记录。",
       sql: "SELECT * FROM item WHERE status = 0 ORDER BY item_id;",
       rows: await query("SELECT * FROM item WHERE status = 0 ORDER BY item_id;"),
       columns: [
@@ -459,7 +459,7 @@ async function renderAnalysisPage() {
     },
     {
       title: "查询价格大于 30 的商品",
-      description: "对应要求：查询价格大于 30 的商品。",
+      description: "按价格条件筛选商品，便于查看较高价格区间的数据。",
       sql: "SELECT * FROM item WHERE price > 30 ORDER BY price DESC;",
       rows: await query("SELECT * FROM item WHERE price > 30 ORDER BY price DESC;"),
       columns: [
@@ -471,7 +471,7 @@ async function renderAnalysisPage() {
     },
     {
       title: "查询“生活用品”类商品",
-      description: "题目中的“生活用品”在初始数据中对应 category = DailyGoods。",
+      description: "按商品分类筛选生活用品类记录。",
       sql: "SELECT * FROM item WHERE category = 'DailyGoods' ORDER BY item_id;",
       rows: await query("SELECT * FROM item WHERE category = 'DailyGoods' ORDER BY item_id;"),
       columns: [
@@ -483,7 +483,7 @@ async function renderAnalysisPage() {
     },
     {
       title: "查询 u001 发布的所有商品",
-      description: "对应要求：查询卖家 u001 发布的商品。",
+      description: "按卖家编号筛选指定用户发布的商品。",
       sql: "SELECT * FROM item WHERE seller_id = 'u001' ORDER BY item_id;",
       rows: await query("SELECT * FROM item WHERE seller_id = 'u001' ORDER BY item_id;"),
       columns: [
@@ -519,7 +519,7 @@ ORDER BY i.item_id;`.trim(),
     },
     {
       title: "查询每个订单：商品名 + 买家名 + 日期",
-      description: "对应要求：订单详情连接查询。",
+      description: "连接订单、商品和用户数据，形成订单明细视图。",
       sql: `
 SELECT i.item_name, u.user_name AS buyer_name, o.order_date
 FROM orders o

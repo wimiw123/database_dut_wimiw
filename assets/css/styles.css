@@ -171,7 +171,7 @@ pre {
 .page-intro h1,
 .hero h1 {
   margin: 0;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Noto Sans SC", "Space Grotesk", sans-serif;
   font-size: clamp(2rem, 5vw, 3.6rem);
   line-height: 1.02;
   letter-spacing: -0.04em;

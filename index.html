@@ -19,8 +19,8 @@
       <a class="brand" href="index.html">
         <span class="brand-mark">DB</span>
         <div>
-          <strong>wimiw的校园二手交易平台</strong>
-          <span>Database Course Project</span>
+          <strong>校园二手交易平台</strong>
+          <span>数据库课程项目</span>
         </div>
       </a>
       <nav class="main-nav">
@@ -36,11 +36,11 @@
     <main class="page-main">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">数据库大作业成品站点</p>
-          <h1>把 SQL、视图、事务和网页交互放进同一个在线可访问项目里。</h1>
+          <p class="eyebrow">数据库课程项目</p>
+          <h1>校园二手交易场景下的数据库管理与查询展示系统。</h1>
           <p class="hero-text">
-            本站使用浏览器内 SQLite 数据库运行，所有增删改查与购买逻辑都会真实写入数据库并持久化。
-            刷新页面后，数据变化仍然可见。
+            系统使用浏览器内 SQLite 数据库运行，支持商品管理、订单记录、数据查询和事务处理。
+            数据变更会在本地持久化，刷新页面后仍可继续查看。
           </p>
           <div class="hero-actions">
             <a class="primary-button" href="items.html">进入商品管理</a>
@@ -48,12 +48,12 @@
           </div>
         </div>
         <div class="hero-panel">
-          <div class="panel-badge">Assignment Checklist</div>
+          <div class="panel-badge">项目功能概览</div>
           <ul class="check-list">
-            <li>四个核心页面已具备</li>
-            <li>三张表与初始数据已落库</li>
-            <li>基础查询、连接查询、聚合查询齐全</li>
-            <li>视图与购买事务可直接演示</li>
+            <li>核心页面结构完整</li>
+            <li>用户、商品、订单数据已初始化</li>
+            <li>支持基础查询、连接查询与聚合统计</li>
+            <li>支持视图查询和购买事务演示</li>
           </ul>
         </div>
       </section>
@@ -64,12 +64,12 @@
         <article class="card">
           <div class="card-header">
             <h2>系统说明</h2>
-            <span class="pill">SQLite + Static Web</span>
+            <span class="pill">SQLite + 静态网页</span>
           </div>
           <div class="card-body prose">
             <p>
-              为满足“提供一个可以直接访问的网址、无需后端运行环境”的要求，本项目采用静态网页 +
-              浏览器内 SQLite 数据库的实现方式，部署到任意静态托管平台即可在线访问。
+              本项目采用静态网页与浏览器内 SQLite 数据库实现，部署到静态托管平台后即可在线访问，
+              适合进行数据库结构、查询语句和事务流程展示。
             </p>
             <p>
               数据库包含 <code>user</code>、<code>item</code>、<code>orders</code>
@@ -81,7 +81,7 @@
         <article class="card">
           <div class="card-header">
             <h2>快捷入口</h2>
-            <span class="pill">Pages</span>
+            <span class="pill">页面导航</span>
           </div>
           <div class="card-body quick-links">
             <a class="quick-link" href="items.html">
@@ -98,7 +98,7 @@
             </a>
             <a class="quick-link" href="analysis.html">
               <strong>查询分析页</strong>
-              <span>集中展示老师要求的全部查询、视图与统计</span>
+              <span>集中展示查询语句、视图结果与统计分析</span>
             </a>
           </div>
         </article>
@@ -108,7 +108,7 @@
         <article class="card">
           <div class="card-header">
             <h2>最近数据快照</h2>
-            <span class="pill">Live Data</span>
+            <span class="pill">数据快照</span>
           </div>
           <div class="card-body">
             <div id="home-preview"></div>
